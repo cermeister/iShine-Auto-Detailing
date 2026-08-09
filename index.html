@@ -468,87 +468,6 @@ section{ position:relative; padding:110px 0; }
 @media (max-width: 900px){ .gallery-grid{ grid-template-columns:1fr; } }
 
 /* =========================================================
-   BOOKING FORM
-   ========================================================= */
-.booking-wrap{
-  display:grid;
-  grid-template-columns: .8fr 1.2fr;
-  gap:0;
-  border-radius: var(--radius-lg);
-  overflow:hidden;
-  border:1px solid var(--panel-border);
-  box-shadow: var(--shadow-card);
-}
-.booking-side{
-  padding:52px 44px;
-  background:
-    linear-gradient(160deg, rgba(6,10,20,.7), rgba(6,10,20,.93)),
-    url('https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=1000&q=80') center/cover;
-  display:flex; flex-direction:column; justify-content:center;
-  position:relative;
-}
-.booking-side h3{ font-size:1.9rem; text-transform:uppercase; margin-bottom:16px; }
-.booking-side p{ color:var(--text-muted); margin-bottom:30px; }
-.booking-side .info-row{ display:flex; gap:14px; align-items:flex-start; margin-bottom:20px; }
-.booking-side .info-row .ic{
-  width:38px; height:38px; border-radius:10px; flex-shrink:0;
-  background: rgba(0,212,255,.1); border:1px solid rgba(0,212,255,.3);
-  display:flex; align-items:center; justify-content:center; color:var(--primary);
-}
-.booking-side .info-row div b{ display:block; font-size:.92rem; }
-.booking-side .info-row div span{ font-size:.85rem; color:var(--text-faint); }
-
-.booking-form{ padding:52px 44px; background: var(--panel); }
-.form-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:22px;
-}
-.field{ display:flex; flex-direction:column; gap:8px; }
-.field.full{ grid-column: 1 / -1; }
-.field label{ font-size:.8rem; text-transform:uppercase; letter-spacing:.08em; color:var(--text-muted); font-weight:600; }
-.field input, .field select, .field textarea{
-  background: var(--dark-bg-alt);
-  border:1.5px solid var(--panel-border);
-  border-radius: var(--radius-sm);
-  padding:14px 16px;
-  font-size:.95rem;
-  color: var(--text-primary);
-  transition: border-color var(--dur), box-shadow var(--dur);
-}
-.field textarea{ resize:vertical; min-height:110px; }
-.field input::placeholder, .field textarea::placeholder{ color: var(--text-faint); }
-.field input:focus, .field select:focus, .field textarea:focus{
-  outline:none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 4px rgba(0,212,255,.12);
-}
-.field select{ appearance:none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%2300d4ff' stroke-width='2'%3E%3Cpath d='M5 8l5 5 5-5'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 14px center; background-size:16px; padding-right:40px; }
-.form-submit{ margin-top:28px; width:100%; padding:16px; font-size:.95rem; }
-
-.form-success{
-  display:none;
-  align-items:center;
-  gap:14px;
-  margin-top:22px;
-  padding:18px 20px;
-  border-radius: var(--radius-md);
-  background: rgba(53,230,160,.1);
-  border:1px solid rgba(53,230,160,.4);
-  color:#8ff2c8;
-  font-size:.92rem;
-  animation: rise .5s var(--ease);
-}
-.form-success.show{ display:flex; }
-.form-success .ic{ font-size:1.3rem; flex-shrink:0; }
-@keyframes rise{ from{ opacity:0; transform:translateY(10px);} to{ opacity:1; transform:translateY(0);} }
-
-@media (max-width: 880px){
-  .booking-wrap{ grid-template-columns:1fr; }
-  .form-grid{ grid-template-columns:1fr; }
-}
-
-/* =========================================================
    FOOTER
    ========================================================= */
 .site-footer{
@@ -663,7 +582,6 @@ section{ position:relative; padding:110px 0; }
       <a href="#home" class="nav-link active">Home</a>
       <a href="#services" class="nav-link">Services</a>
       <a href="#gallery" class="nav-link">Gallery</a>
-      <a href="#booking" class="nav-link">Book Now</a>
       <a href="#contact" class="nav-link">Contact</a>
     </nav>
 
