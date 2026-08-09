@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iShine Auto Detailing — Precision Detailing, Uncompromising Shine</title>
+<meta name="description" content="iShine Auto Detailing — interior detailing, exterior polish, and ceramic coating. Book your appointment today.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================================================
+   ROOT / CUSTOMIZABLE DESIGN TOKENS
+   Edit these variables to re-theme the entire site.
+   ========================================================= */
+:root{
+  /* --- Colors --- */
+  --primary:        #00d4ff;   /* electric cyan — CTAs, highlights, glow */
+  --primary-dim:     #00a8cc;
+  --secondary:       #2e6bff;  /* electric blue — secondary accents, gradients */
+  --dark-bg:          #060a14; /* deepest navy/slate background */
+  --dark-bg-alt:      #0b101d; /* alternate section background */
+  --panel:            #101828; /* card / panel surface */
+  --panel-border:     #1e2a40;
+  --text-primary:     #eef3fb;
+  --text-muted:       #8b9bb4;
+  --text-faint:       #5c6b85;
+  --success:          #35e6a0;
+  --danger:           #ff5470;
+
+  /* --- Gradients --- */
+  --grad-primary: linear-gradient(115deg, var(--primary) 0%, var(--secondary) 100%);
+  --grad-sheen:   linear-gradient(100deg, transparent 30%, rgba(255,255,255,.35) 45%, rgba(0,212,255,.55) 50%, transparent 65%);
+
+  /* --- Typography --- */
+  --font-display: 'Rajdhani', 'Arial Narrow', sans-serif;
+  --font-body:    'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* --- Radii / Shape --- */
+  --radius-sm: 6px;
+  --radius-md: 14px;
+  --radius-lg: 26px;
+  --radius-pill: 999px;
+
+  /* --- Shadow / Glow --- */
+  --glow-primary: 0 0 0 1px rgba(0,212,255,.25), 0 20px 60px -20px rgba(0,212,255,.45);
+  --shadow-card: 0 20px 40px -24px rgba(0,0,0,.7);
+
+  /* --- Motion --- */
+  --ease: cubic-bezier(.22,.9,.32,1);
+  --dur: .45s;
+}
+
+/* =========================================================
+   RESET / BASE
+   ========================================================= */
+*, *::before, *::after{ box-sizing: border-box; margin:0; padding:0; }
+html{ scroll-behavior:smooth; }
+body{
+  background: var(--dark-bg);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img{ max-width:100%; display:block; }
+a{ color:inherit; text-decoration:none; }
+ul{ list-style:none; }
+button{ font-family:inherit; cursor:pointer; border:none; background:none; color:inherit; }
+input, select, textarea{ font-family:inherit; color:inherit; }
+h1,h2,h3,h4{ font-family:var(--font-display); font-weight:700; letter-spacing:.01em; line-height:1.05; }
+:focus-visible{ outline:2px solid var(--primary); outline-offset:3px; border-radius:4px; }
+
+.container{
+  width:100%;
+  max-width:1240px;
+  margin-inline:auto;
+  padding-inline:24px;
+}
+.eyebrow{
+  font-family: var(--font-display);
+  text-transform:uppercase;
+  letter-spacing:.3em;
+  font-size:.75rem;
+  color:var(--primary);
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:14px;
+}
+.eyebrow::before{
+  content:'';
+  width:26px; height:2px;
+  background: var(--grad-primary);
+  display:inline-block;
+}
+.section-head{ max-width:640px; margin-bottom:52px; }
+.section-head h2{ font-size: clamp(2rem, 4vw, 2.85rem); text-transform:uppercase; margin-bottom:14px; }
+.section-head p{ color:var(--text-muted); font-size:1.05rem; }
+
+section{ position:relative; padding:110px 0; }
+.alt-bg{ background: var(--dark-bg-alt); }
+
+/* angled divider used between sections — automotive "speed line" motif */
+.speed-divider{
+  position:relative;
+  height:64px;
+  background: var(--dark-bg);
+}
+.speed-divider::before{
+  content:'';
+  position:absolute; inset:0;
+  background: var(--dark-bg-alt);
+  clip-path: polygon(0 100%, 100% 0, 100% 100%);
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:16px 34px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-display);
+  font-weight:600;
+  font-size:1rem;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), background var(--dur) var(--ease), color var(--dur) var(--ease);
+  white-space:nowrap;
+}
+.btn-primary{
+  background: var(--grad-primary);
+  color:#04101a;
+  box-shadow: var(--glow-primary);
+  position:relative;
+  overflow:hidden;
+}
+.btn-primary::after{
+  content:'';
+  position:absolute; inset:0;
+  background: var(--grad-sheen);
+  transform: translateX(-120%);
+  transition: transform .8s var(--ease);
+}
+.btn-primary:hover::after{ transform: translateX(120%); }
+.btn-primary:hover{ transform: translateY(-3px); box-shadow: 0 0 0 1px rgba(0,212,255,.4), 0 26px 70px -16px rgba(0,212,255,.6); }
+
+.btn-ghost{
+  background: transparent;
+  color: var(--text-primary);
+  border: 1.5px solid var(--panel-border);
+}
+.btn-ghost:hover{
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-3px);
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+.site-header{
+  position: fixed;
+  top:0; left:0; right:0;
+  z-index: 1000;
+  padding: 26px 0;
+  background: transparent;
+  transition: padding var(--dur) var(--ease), background var(--dur) var(--ease), box-shadow var(--dur) var(--ease), backdrop-filter var(--dur) var(--ease);
+}
+.site-header.scrolled{
+  padding: 14px 0;
+  background: rgba(6, 10, 20, .82);
+  backdrop-filter: blur(14px) saturate(140%);
+  box-shadow: 0 10px 40px -20px rgba(0,0,0,.8), inset 0 -1px 0 var(--panel-border);
+}
+.header-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-family: var(--font-display);
+  font-size:1.5rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.03em;
+}
+.brand .mark{
+  width:34px; height:34px;
+  border-radius:9px;
+  background: var(--grad-primary);
+  display:flex; align-items:center; justify-content:center;
+  color:#04101a;
+  font-size:1.05rem;
+  box-shadow: var(--glow-primary);
+  flex-shrink:0;
+}
+.brand span{ color: var(--primary); }
+
+.main-nav{ display:flex; align-items:center; gap:4px; }
+.main-nav a{
+  padding:10px 18px;
+  font-size:.92rem;
+  font-weight:500;
+  color: var(--text-muted);
+  border-radius: var(--radius-pill);
+  transition: color var(--dur), background var(--dur);
+  position:relative;
+}
+.main-nav a:hover{ color: var(--text-primary); }
+.main-nav a.active{ color: var(--dark-bg); background: var(--primary); font-weight:600; }
+
+.header-actions{ display:flex; align-items:center; gap:18px; }
+.header-actions .btn{ padding:12px 26px; font-size:.85rem; }
+
+.hamburger{
+  display:none;
+  flex-direction:column;
+  justify-content:center;
+  gap:5px;
+  width:42px; height:42px;
+  border-radius:10px;
+  border:1.5px solid var(--panel-border);
+  background: var(--panel);
+}
+.hamburger span{
+  width:20px; height:2px;
+  background: var(--text-primary);
+  margin-inline:auto;
+  transition: transform .35s var(--ease), opacity .35s var(--ease);
+}
+.hamburger.open span:nth-child(1){ transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2){ opacity:0; }
+.hamburger.open span:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
+
+/* =========================================================
+   HERO
+   ========================================================= */
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  padding-top:120px;
+  position:relative;
+  background:
+    radial-gradient(ellipse 60% 50% at 80% 20%, rgba(0,212,255,.16), transparent 60%),
+    radial-gradient(ellipse 50% 60% at 10% 90%, rgba(46,107,255,.18), transparent 60%),
+    linear-gradient(180deg, rgba(6,10,20,.55), rgba(6,10,20,.92)),
+    url('https://images.unsplash.com/photo-1605164599901-db2947f68a5c?auto=format&fit=crop&w=1800&q=80') center 30%/cover no-repeat;
+  overflow:hidden;
+}
+.hero::before{
+  /* faint automotive speed-line texture */
+  content:'';
+  position:absolute; inset:0;
+  background: repeating-linear-gradient(115deg, transparent 0 60px, rgba(0,212,255,.035) 60px 61px);
+  pointer-events:none;
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns: 1.15fr .85fr;
+  gap:40px;
+  align-items:center;
+  position:relative; z-index:2;
+}
+.hero-copy h1{
+  font-size: clamp(2.6rem, 6vw, 4.6rem);
+  text-transform:uppercase;
+  margin-bottom:22px;
+}
+.hero-copy h1 .sheen{
+  background: var(--grad-primary);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  display:inline-block;
+}
+.hero-copy p.lead{
+  font-size:1.15rem;
+  color: var(--text-muted);
+  max-width:520px;
+  margin-bottom:38px;
+}
+.hero-cta{ display:flex; gap:18px; flex-wrap:wrap; margin-bottom:52px; }
+
+.hero-stats{
+  display:flex;
+  gap:38px;
+  flex-wrap:wrap;
+}
+.hero-stats .stat b{
+  display:block;
+  font-family:var(--font-display);
+  font-size:2rem;
+  color: var(--primary);
+}
+.hero-stats .stat span{
+  font-size:.82rem;
+  color: var(--text-faint);
+  text-transform:uppercase;
+  letter-spacing:.12em;
+}
+
+/* hero side panel — polished-panel visual */
+.hero-panel{
+  position:relative;
+  border-radius: var(--radius-lg);
+  border:1px solid var(--panel-border);
+  background: linear-gradient(160deg, rgba(16,24,40,.75), rgba(9,13,24,.85));
+  backdrop-filter: blur(10px);
+  padding:34px;
+  box-shadow: var(--shadow-card);
+}
+.hero-panel::before{
+  content:'';
+  position:absolute; inset:-1px;
+  border-radius: inherit;
+  padding:1px;
+  background: linear-gradient(160deg, rgba(0,212,255,.6), transparent 40%, transparent 70%, rgba(46,107,255,.5));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events:none;
+}
+.hero-panel h3{ font-size:1.25rem; text-transform:uppercase; margin-bottom:18px; color:var(--text-primary); }
+.hero-panel ul{ display:flex; flex-direction:column; gap:16px; }
+.hero-panel li{ display:flex; gap:12px; align-items:flex-start; color:var(--text-muted); font-size:.95rem; }
+.hero-panel li .dot{
+  width:20px; height:20px; flex-shrink:0; margin-top:2px;
+  border-radius:50%;
+  background: rgba(0,212,255,.12);
+  color: var(--primary);
+  display:flex; align-items:center; justify-content:center;
+  font-size:.7rem; font-weight:700;
+}
+
+@media (max-width: 940px){
+  .hero-grid{ grid-template-columns:1fr; }
+  .hero-panel{ order:-1; }
+}
+
+/* =========================================================
+   SERVICES
+   ========================================================= */
+.services-grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:28px;
+}
+.service-card{
+  position:relative;
+  background: var(--panel);
+  border:1px solid var(--panel-border);
+  border-radius: var(--radius-lg);
+  padding:38px 30px 32px;
+  overflow:hidden;
+  transition: transform var(--dur) var(--ease), border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+.service-card::before{
+  content:'';
+  position:absolute; top:0; left:0; right:0; height:3px;
+  background: var(--grad-primary);
+  transform: scaleX(0);
+  transform-origin:left;
+  transition: transform var(--dur) var(--ease);
+}
+.service-card:hover{
+  transform: translateY(-10px);
+  border-color: rgba(0,212,255,.55);
+  box-shadow: var(--glow-primary);
+}
+.service-card:hover::before{ transform: scaleX(1); }
+.service-card .icon{
+  width:56px; height:56px;
+  border-radius: var(--radius-md);
+  background: rgba(0,212,255,.08);
+  border:1px solid rgba(0,212,255,.25);
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.5rem;
+  margin-bottom:24px;
+  color: var(--primary);
+}
+.service-card h3{ font-size:1.4rem; text-transform:uppercase; margin-bottom:10px; }
+.service-card p{ color: var(--text-muted); font-size:.95rem; margin-bottom:22px; min-height:66px; }
+.service-card .price{
+  display:flex; align-items:baseline; gap:6px;
+  font-family: var(--font-display);
+  font-size:2.1rem; color:var(--primary);
+  margin-bottom:22px;
+}
+.service-card .price span{ font-size:.85rem; color:var(--text-faint); font-family:var(--font-body); }
+.service-card .features{ display:flex; flex-direction:column; gap:10px; margin-bottom:28px; }
+.service-card .features li{ font-size:.88rem; color:var(--text-muted); display:flex; gap:10px; }
+.service-card .features li::before{ content:'✓'; color:var(--primary); font-weight:700; }
+.service-card .btn{ width:100%; padding:13px; font-size:.85rem; }
+.service-card.featured{ border-color: rgba(0,212,255,.45); background: linear-gradient(160deg, rgba(0,212,255,.06), var(--panel) 55%); }
+.service-card .badge{
+  position:absolute; top:24px; right:-38px;
+  background: var(--grad-primary);
+  color:#04101a; font-family:var(--font-display); font-weight:700;
+  font-size:.72rem; text-transform:uppercase; letter-spacing:.08em;
+  padding:6px 44px;
+  transform: rotate(35deg);
+}
+
+@media (max-width: 900px){ .services-grid{ grid-template-columns:1fr; } }
+
+/* =========================================================
+   BEFORE / AFTER GALLERY
+   ========================================================= */
+.gallery-grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:26px;
+}
+.ba-card{
+  border-radius: var(--radius-lg);
+  overflow:hidden;
+  border:1px solid var(--panel-border);
+  background: var(--panel);
+  box-shadow: var(--shadow-card);
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+.ba-card:hover{ transform: translateY(-6px); box-shadow: var(--glow-primary); }
+.ba-split{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  position:relative;
+}
+.ba-split::after{
+  content:'';
+  position:absolute; top:0; bottom:0; left:50%;
+  width:2px;
+  background: var(--grad-primary);
+  transform:translateX(-50%);
+  z-index:3;
+}
+.ba-half{ position:relative; aspect-ratio: 3/4; overflow:hidden; }
+.ba-half img{ width:100%; height:100%; object-fit:cover; filter: saturate(.85); transition: transform .6s var(--ease); }
+.ba-card:hover .ba-half img{ transform: scale(1.06); }
+.ba-half .tag{
+  position:absolute; top:14px;
+  font-family: var(--font-display);
+  font-weight:700; font-size:.72rem; text-transform:uppercase; letter-spacing:.12em;
+  padding:6px 14px;
+  border-radius: var(--radius-pill);
+  backdrop-filter: blur(6px);
+  z-index:4;
+}
+.ba-half.before img{ filter: saturate(.4) brightness(.75) contrast(1.05); }
+.ba-half.before .tag{ left:14px; background: rgba(255,84,112,.18); color:#ff8fa3; border:1px solid rgba(255,84,112,.4); }
+.ba-half.after .tag{ right:14px; background: rgba(0,212,255,.18); color: var(--primary); border:1px solid rgba(0,212,255,.4); }
+.ba-caption{ padding:20px 22px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.ba-caption h4{ font-family:var(--font-display); text-transform:uppercase; font-size:1.05rem; }
+.ba-caption span{ font-size:.8rem; color:var(--text-faint); }
+
+@media (max-width: 900px){ .gallery-grid{ grid-template-columns:1fr; } }
+
+/* =========================================================
+   BOOKING FORM
+   ========================================================= */
+.booking-wrap{
+  display:grid;
+  grid-template-columns: .8fr 1.2fr;
+  gap:0;
+  border-radius: var(--radius-lg);
+  overflow:hidden;
+  border:1px solid var(--panel-border);
+  box-shadow: var(--shadow-card);
+}
+.booking-side{
+  padding:52px 44px;
+  background:
+    linear-gradient(160deg, rgba(6,10,20,.7), rgba(6,10,20,.93)),
+    url('https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=1000&q=80') center/cover;
+  display:flex; flex-direction:column; justify-content:center;
+  position:relative;
+}
+.booking-side h3{ font-size:1.9rem; text-transform:uppercase; margin-bottom:16px; }
+.booking-side p{ color:var(--text-muted); margin-bottom:30px; }
+.booking-side .info-row{ display:flex; gap:14px; align-items:flex-start; margin-bottom:20px; }
+.booking-side .info-row .ic{
+  width:38px; height:38px; border-radius:10px; flex-shrink:0;
+  background: rgba(0,212,255,.1); border:1px solid rgba(0,212,255,.3);
+  display:flex; align-items:center; justify-content:center; color:var(--primary);
+}
+.booking-side .info-row div b{ display:block; font-size:.92rem; }
+.booking-side .info-row div span{ font-size:.85rem; color:var(--text-faint); }
+
+.booking-form{ padding:52px 44px; background: var(--panel); }
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:22px;
+}
+.field{ display:flex; flex-direction:column; gap:8px; }
+.field.full{ grid-column: 1 / -1; }
+.field label{ font-size:.8rem; text-transform:uppercase; letter-spacing:.08em; color:var(--text-muted); font-weight:600; }
+.field input, .field select, .field textarea{
+  background: var(--dark-bg-alt);
+  border:1.5px solid var(--panel-border);
+  border-radius: var(--radius-sm);
+  padding:14px 16px;
+  font-size:.95rem;
+  color: var(--text-primary);
+  transition: border-color var(--dur), box-shadow var(--dur);
+}
+.field textarea{ resize:vertical; min-height:110px; }
+.field input::placeholder, .field textarea::placeholder{ color: var(--text-faint); }
+.field input:focus, .field select:focus, .field textarea:focus{
+  outline:none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(0,212,255,.12);
+}
+.field select{ appearance:none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%2300d4ff' stroke-width='2'%3E%3Cpath d='M5 8l5 5 5-5'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 14px center; background-size:16px; padding-right:40px; }
+.form-submit{ margin-top:28px; width:100%; padding:16px; font-size:.95rem; }
+
+.form-success{
+  display:none;
+  align-items:center;
+  gap:14px;
+  margin-top:22px;
+  padding:18px 20px;
+  border-radius: var(--radius-md);
+  background: rgba(53,230,160,.1);
+  border:1px solid rgba(53,230,160,.4);
+  color:#8ff2c8;
+  font-size:.92rem;
+  animation: rise .5s var(--ease);
+}
+.form-success.show{ display:flex; }
+.form-success .ic{ font-size:1.3rem; flex-shrink:0; }
+@keyframes rise{ from{ opacity:0; transform:translateY(10px);} to{ opacity:1; transform:translateY(0);} }
+
+@media (max-width: 880px){
+  .booking-wrap{ grid-template-columns:1fr; }
+  .form-grid{ grid-template-columns:1fr; }
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.site-footer{
+  background: var(--dark-bg-alt);
+  border-top:1px solid var(--panel-border);
+  padding:80px 0 30px;
+}
+.footer-grid{
+  display:grid;
+  grid-template-columns: 1.3fr 1fr 1fr 1fr;
+  gap:40px;
+  margin-bottom:60px;
+}
+.footer-brand p{ color:var(--text-muted); font-size:.92rem; margin:18px 0 22px; max-width:280px; }
+.social-row{ display:flex; gap:10px; }
+.social-row a{
+  width:38px; height:38px; border-radius:50%;
+  border:1px solid var(--panel-border);
+  display:flex; align-items:center; justify-content:center;
+  font-size:.85rem; color:var(--text-muted);
+  transition: border-color var(--dur), color var(--dur), transform var(--dur);
+}
+.social-row a:hover{ border-color:var(--primary); color:var(--primary); transform:translateY(-3px); }
+.footer-col h5{ font-family:var(--font-display); text-transform:uppercase; font-size:1rem; letter-spacing:.06em; margin-bottom:20px; color:var(--text-primary); }
+.footer-col ul{ display:flex; flex-direction:column; gap:12px; }
+.footer-col li{ font-size:.9rem; color:var(--text-muted); }
+.footer-col li a:hover{ color:var(--primary); }
+.footer-col .hours-row{ display:flex; justify-content:space-between; gap:10px; }
+.footer-col .hours-row span:last-child{ color:var(--text-faint); }
+.footer-col .contact-row{ display:flex; gap:10px; align-items:flex-start; }
+.footer-bottom{
+  border-top:1px solid var(--panel-border);
+  padding-top:26px;
+  display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
+  font-size:.82rem; color:var(--text-faint);
+}
+.footer-bottom a:hover{ color:var(--primary); }
+
+@media (max-width: 900px){
+  .footer-grid{ grid-template-columns:1fr 1fr; }
+}
+@media (max-width: 560px){
+  .footer-grid{ grid-template-columns:1fr; }
+}
+
+/* =========================================================
+   RESPONSIVE — HEADER / NAV
+   ========================================================= */
+@media (max-width: 940px){
+  .main-nav{
+    position:fixed;
+    top:0; right:0;
+    height:100vh;
+    width:min(320px, 80vw);
+    background: rgba(6,10,20,.98);
+    backdrop-filter: blur(16px);
+    border-left:1px solid var(--panel-border);
+    flex-direction:column;
+    align-items:stretch;
+    justify-content:flex-start;
+    gap:6px;
+    padding:110px 26px 26px;
+    transform: translateX(100%);
+    transition: transform .45s var(--ease);
+    z-index:999;
+  }
+  .main-nav.open{ transform: translateX(0); }
+  .main-nav a{ padding:16px 18px; font-size:1.05rem; border-bottom:1px solid var(--panel-border); border-radius:0; }
+  .main-nav a.active{ background:none; color:var(--primary); }
+  .header-actions .btn-label{ display:none; }
+  .hamburger{ display:flex; }
+}
+@media (min-width: 941px){
+  .nav-overlay{ display:none !important; }
+}
+.nav-overlay{
+  position:fixed; inset:0;
+  background: rgba(0,0,0,.5);
+  z-index:998;
+  opacity:0; pointer-events:none;
+  transition: opacity .4s var(--ease);
+}
+.nav-overlay.show{ opacity:1; pointer-events:auto; }
+
+/* =========================================================
+   MISC RESPONSIVE
+   ========================================================= */
+@media (max-width: 600px){
+  section{ padding:76px 0; }
+  .hero{ padding-top:100px; }
+  .hero-cta{ flex-direction:column; align-items:stretch; }
+  .hero-stats{ gap:26px; }
+  .booking-side, .booking-form{ padding:36px 24px; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration:.001ms !important; transition-duration:.001ms !important; scroll-behavior:auto !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- =========================================================
+     HEADER
+     ========================================================= -->
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+    <a href="#home" class="brand"><span class="mark">iS</span>i<span>Shine</span></a>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="#home" class="nav-link active">Home</a>
+      <a href="#services" class="nav-link">Services</a>
+      <a href="#gallery" class="nav-link">Gallery</a>
+      <a href="#booking" class="nav-link">Book Now</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <a href="#booking" class="btn btn-primary"><span class="btn-label">Book Appointment</span><span class="btn-label-mobile" style="display:none;">Book</span></a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="nav-overlay" id="navOverlay"></div>
+
+<!-- =========================================================
+     HERO
+     ========================================================= -->
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">Mobile &amp; In-Shop Detailing</p>
+      <h1>Your Car Deserves<br>a <span class="sheen">Showroom Shine.</span></h1>
+      <p class="lead">Paint correction, ceramic coatings, and meticulous interior care from a team obsessed with the details. Book in under a minute — we come to you.</p>
+      <div class="hero-cta">
+        <a href="#booking" class="btn btn-primary">Book Appointment</a>
+        <a href="#services" class="btn btn-ghost">Our Services</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><b>4.9★</b><span>320+ Reviews</span></div>
+        <div class="stat"><b>7,500+</b><span>Cars Detailed</span></div>
+        <div class="stat"><b>5 Yr</b><span>Coating Warranty</span></div>
+      </div>
+    </div>
+
+    <div class="hero-panel">
+      <h3>Why Drivers Choose iShine</h3>
+      <ul>
+        <li><span class="dot">✓</span> Certified ceramic coating applicators, IDA-trained technicians</li>
+        <li><span class="dot">✓</span> pH-balanced, paint-safe chemicals — no harsh strippers</li>
+        <li><span class="dot">✓</span> Mobile unit reaches your home or office</li>
+        <li><span class="dot">✓</span> Every job backed by our 7-day shine guarantee</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="speed-divider"></div>
+
+<!-- =========================================================
+     SERVICES
+     ========================================================= -->
+<section id="services" class="alt-bg">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Services</p>
+      <h2>Built Around Your Vehicle</h2>
+      <p>From a weekend refresh to a multi-year paint shield, pick the package that matches how you drive.</p>
+    </div>
+
+    <div class="services-grid">
+
+      <article class="service-card">
+        <div class="icon">🧽</div>
+        <h3>Interior Detail</h3>
+        <p>Deep vacuum, steam-cleaned upholstery, leather conditioning, and a full dash-to-trunk wipe-down.</p>
+        <div class="price">$149<span>starting</span></div>
+        <ul class="features">
+          <li>Carpet &amp; upholstery shampoo</li>
+          <li>Leather clean &amp; condition</li>
+          <li>Odor elimination treatment</li>
+        </ul>
+        <a href="#booking" class="btn btn-ghost">Select Package</a>
+      </article>
+
+      <article class="service-card featured">
+        <span class="badge">Popular</span>
+        <div class="icon">✨</div>
+        <h3>Exterior Polish</h3>
+        <p>Hand wash, clay bar decontamination, machine polish, and a durable sealant for a mirror finish.</p>
+        <div class="price">$199<span>starting</span></div>
+        <ul class="features">
+          <li>Clay bar decontamination</li>
+          <li>Machine paint polish</li>
+          <li>6-month sealant protection</li>
+        </ul>
+        <a href="#booking" class="btn btn-primary">Select Package</a>
+      </article>
+
+      <article class="service-card">
+        <div class="icon">🛡️</div>
+        <h3>Ceramic Coating</h3>
+        <p>Multi-layer 9H ceramic shield for lasting gloss, hydrophobic beading, and UV/chemical resistance.</p>
+        <div class="price">$599<span>starting</span></div>
+        <ul class="features">
+          <li>Full paint correction included</li>
+          <li>5-year manufacturer warranty</li>
+          <li>Hydrophobic, self-cleaning finish</li>
+        </ul>
+        <a href="#booking" class="btn btn-ghost">Select Package</a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<div class="speed-divider"></div>
+
+<!-- =========================================================
+     BEFORE / AFTER GALLERY
+     ========================================================= -->
+<section id="gallery">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Results</p>
+      <h2>See the Transformation</h2>
+      <p>A snapshot of real vehicles, before our team got to work and after.</p>
+    </div>
+
+    <div class="gallery-grid">
+
+      <article class="ba-card">
+        <div class="ba-split">
+          <div class="ba-half before">
+            <span class="tag">Before</span>
+            <img src="https://images.unsplash.com/photo-1605164599901-db2947f68a5c?auto=format&fit=crop&w=700&q=70" alt="Sedan exterior before detailing, dull paint">
+          </div>
+          <div class="ba-half after">
+            <span class="tag">After</span>
+            <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=700&q=80" alt="Sedan exterior after ceramic coating, glossy finish">
+          </div>
+        </div>
+        <div class="ba-caption">
+          <h4>Exterior Polish</h4>
+          <span>2021 Sedan</span>
+        </div>
+      </article>
+
+      <article class="ba-card">
+        <div class="ba-split">
+          <div class="ba-half before">
+            <span class="tag">Before</span>
+            <img src="https://images.unsplash.com/photo-1607853202273-797f1c22a38e?auto=format&fit=crop&w=700&q=70" alt="Car interior before detailing, dusty seats">
+          </div>
+          <div class="ba-half after">
+            <span class="tag">After</span>
+            <img src="https://images.unsplash.com/photo-1552353617-3bfd679b3bd6?auto=format&fit=crop&w=700&q=80" alt="Car interior after deep clean, spotless seats">
+          </div>
+        </div>
+        <div class="ba-caption">
+          <h4>Interior Detail</h4>
+          <span>2020 SUV</span>
+        </div>
+      </article>
+
+      <article class="ba-card">
+        <div class="ba-split">
+          <div class="ba-half before">
+            <span class="tag">Before</span>
+            <img src="https://images.unsplash.com/photo-1518987048-93e29699e79a?auto=format&fit=crop&w=700&q=70" alt="Truck exterior before ceramic coating">
+          </div>
+          <div class="ba-half after">
+            <span class="tag">After</span>
+            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=700&q=80" alt="Truck exterior after ceramic coating, deep gloss">
+          </div>
+        </div>
+        <div class="ba-caption">
+          <h4>Ceramic Coating</h4>
+          <span>2022 Truck</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<div class="speed-divider"></div>
+
+<!-- =========================================================
+     BOOKING FORM
+     ========================================================= -->
+<section id="booking" class="alt-bg">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Book Now</p>
+      <h2>Reserve Your Detail</h2>
+      <p>Tell us about your vehicle and we'll confirm your slot within one business hour.</p>
+    </div>
+
+    <div class="booking-wrap">
+      <div class="booking-side">
+        <h3>What to Expect</h3>
+        <p>A quick, no-obligation booking. We'll follow up by phone or email to lock in your time and location.</p>
+
+        <div class="info-row">
+          <div class="ic">📍</div>
+          <div><b>Mobile &amp; In-Shop</b><span>We come to you, or visit our bay</span></div>
+        </div>
+        <div class="info-row">
+          <div class="ic">⏱️</div>
+          <div><b>Fast Confirmation</b><span>Reply within 1 business hour</span></div>
+        </div>
+        <div class="info-row">
+          <div class="ic">🛡️</div>
+          <div><b>Shine Guarantee</b><span>7-day satisfaction guarantee</span></div>
+        </div>
+      </div>
+
+      <form class="booking-form" id="bookingForm" novalidate>
+        <div class="form-grid">
+          <div class="field">
+            <label for="fname">Full Name</label>
+            <input type="text" id="fname" name="name" placeholder="Jordan Reyes" required>
+          </div>
+          <div class="field">
+            <label for="femail">Email Address</label>
+            <input type="email" id="femail" name="email" placeholder="jordan@email.com" required>
+          </div>
+          <div class="field">
+            <label for="fphone">Phone Number</label>
+            <input type="tel" id="fphone" name="phone" placeholder="(555) 123-4567" required>
+          </div>
+          <div class="field">
+            <label for="fservice">Service</label>
+            <select id="fservice" name="service" required>
+              <option value="" disabled selected>Select a service</option>
+              <option value="interior">Interior Detail — $149+</option>
+              <option value="exterior">Exterior Polish — $199+</option>
+              <option value="ceramic">Ceramic Coating — $599+</option>
+              <option value="full">Full Package (Interior + Exterior)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="fdate">Preferred Date</label>
+            <input type="date" id="fdate" name="date" required>
+          </div>
+          <div class="field">
+            <label for="fvehicle">Vehicle Info</label>
+            <input type="text" id="fvehicle" name="vehicle" placeholder="Year, Make, Model" required>
+          </div>
+          <div class="field full">
+            <label for="fnotes">Special Notes</label>
+            <textarea id="fnotes" name="notes" placeholder="Anything we should know — pet hair, stains, scratches, gate code..."></textarea>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary form-submit">Confirm Booking</button>
+
+        <div class="form-success" id="formSuccess">
+          <span class="ic">✅</span>
+          <span id="formSuccessText">Thanks! Your request has been received — we'll be in touch shortly.</span>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+<footer class="site-footer" id="contact">
+  <div class="container">
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+        <a href="#home" class="brand"><span class="mark">iS</span>i<span>Shine</span></a>
+        <p>Precision auto detailing for drivers who notice the details. Mobile service and in-shop appointments available.</p>
+        <div class="social-row">
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="Facebook">FB</a>
+          <a href="#" aria-label="TikTok">TT</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h5>Shop Hours</h5>
+        <ul>
+          <li class="hours-row"><span>Mon – Fri</span><span>8:00 – 18:00</span></li>
+          <li class="hours-row"><span>Saturday</span><span>9:00 – 17:00</span></li>
+          <li class="hours-row"><span>Sunday</span><span>Closed</span></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li class="contact-row">📍 <span>412 Harbor Fleet Rd, Austin, TX</span></li>
+          <li class="contact-row">📞 <span>(555) 812-4477</span></li>
+          <li class="contact-row">✉️ <span>hello@ishineauto.com</span></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#booking">Book Appointment</a></li>
+          <li><a href="#home">Home</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> iShine Auto Detailing. All rights reserved.</span>
+      <span><a href="#">Privacy Policy</a> &nbsp;·&nbsp; <a href="#">Terms of Service</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ---------------------------------------------------------
+     Sticky header: shrink + background on scroll
+  --------------------------------------------------------- */
+  var header = document.getElementById('siteHeader');
+  function handleHeaderScroll(){
+    if(window.scrollY > 40){
+      header.classList.add('scrolled');
+    }else{
+      header.classList.remove('scrolled');
+    }
+  }
+  handleHeaderScroll();
+  window.addEventListener('scroll', handleHeaderScroll, { passive:true });
+
+  /* ---------------------------------------------------------
+     Mobile hamburger menu
+  --------------------------------------------------------- */
+  var hamburger = document.getElementById('hamburger');
+  var mainNav   = document.getElementById('mainNav');
+  var overlay   = document.getElementById('navOverlay');
+
+  function openMenu(){
+    mainNav.classList.add('open');
+    overlay.classList.add('show');
+    hamburger.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu(){
+    mainNav.classList.remove('open');
+    overlay.classList.remove('show');
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+  hamburger.addEventListener('click', function(){
+    mainNav.classList.contains('open') ? closeMenu() : openMenu();
+  });
+  overlay.addEventListener('click', closeMenu);
+
+  /* ---------------------------------------------------------
+     Smooth scroll for all in-page anchor links
+     (accounts for fixed header height)
+  --------------------------------------------------------- */
+  var allAnchorLinks = document.querySelectorAll('a[href^="#"]');
+  allAnchorLinks.forEach(function(link){
+    link.addEventListener('click', function(e){
+      var targetId = this.getAttribute('href');
+      if(targetId.length < 2) return;
+      var target = document.querySelector(targetId);
+      if(!target) return;
+      e.preventDefault();
+
+      var headerOffset = header.offsetHeight + 16;
+      var targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+
+      window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+
+      if(mainNav.classList.contains('open')) closeMenu();
+    });
+  });
+
+  /* ---------------------------------------------------------
+     Scroll-spy: highlight active nav link based on section
+     currently in view, using IntersectionObserver
+  --------------------------------------------------------- */
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-link'));
+  var spySections = ['home','services','gallery','booking','contact']
+    .map(function(id){ return document.getElementById(id); })
+    .filter(Boolean);
+
+  function setActiveLink(id){
+    navLinks.forEach(function(link){
+      var isMatch = link.getAttribute('href') === '#' + id;
+      link.classList.toggle('active', isMatch);
+    });
+  }
+
+  var spyObserver = new IntersectionObserver(function(entries){
+    var visible = entries
+      .filter(function(entry){ return entry.isIntersecting; })
+      .sort(function(a,b){ return b.intersectionRatio - a.intersectionRatio; });
+
+    if(visible.length > 0){
+      setActiveLink(visible[0].target.id);
+    }
+  }, {
+    root: null,
+    rootMargin: '-30% 0px -55% 0px',
+    threshold: [0, .25, .5, .75, 1]
+  });
+
+  spySections.forEach(function(section){ spyObserver.observe(section); });
+
+  /* ---------------------------------------------------------
+     Booking form: intercept submit, validate, show success,
+     reset form — no page reload
+  --------------------------------------------------------- */
+  var bookingForm   = document.getElementById('bookingForm');
+  var formSuccess   = document.getElementById('formSuccess');
+  var formSuccessTx = document.getElementById('formSuccessText');
+
+  bookingForm.addEventListener('submit', function(e){
+    e.preventDefault();
+
+    var data = new FormData(bookingForm);
+    var name    = (data.get('name') || '').toString().trim();
+    var email   = (data.get('email') || '').toString().trim();
+    var phone   = (data.get('phone') || '').toString().trim();
+    var service = (data.get('service') || '').toString().trim();
+    var date    = (data.get('date') || '').toString().trim();
+    var vehicle = (data.get('vehicle') || '').toString().trim();
+
+    if(!name || !email || !phone || !service || !date || !vehicle){
+      bookingForm.reportValidity();
+      return;
+    }
+
+    var serviceLabels = {
+      interior: 'Interior Detail',
+      exterior: 'Exterior Polish',
+      ceramic:  'Ceramic Coating',
+      full:     'Full Package'
+    };
+    var readableService = serviceLabels[service] || service;
+
+    formSuccessTx.textContent =
+      'Thanks, ' + name.split(' ')[0] + '! Your ' + readableService +
+      ' request for ' + vehicle + ' on ' + date + ' has been received — we\'ll confirm by phone or email shortly.';
+
+    formSuccess.classList.add('show');
+    bookingForm.reset();
+
+    formSuccess.scrollIntoView({ behavior:'smooth', block:'nearest' });
+
+    window.clearTimeout(bookingForm._hideTimer);
+    bookingForm._hideTimer = window.setTimeout(function(){
+      formSuccess.classList.remove('show');
+    }, 8000);
+  });
+
+  /* ---------------------------------------------------------
+     Footer year
+  --------------------------------------------------------- */
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+})();
+</script>
+
+</body>
+</html>
