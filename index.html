@@ -1045,7 +1045,7 @@ section{ position:relative; padding:110px 0; }
      currently in view, using IntersectionObserver
   --------------------------------------------------------- */
   var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-link'));
-  var spySections = ['home','services','gallery','booking','contact']
+  var spySections = ['home','services','gallery','contact']
     .map(function(id){ return document.getElementById(id); })
     .filter(Boolean);
 
@@ -1076,48 +1076,7 @@ section{ position:relative; padding:110px 0; }
      Booking form: intercept submit, validate, show success,
      reset form — no page reload
   --------------------------------------------------------- */
-  var bookingForm   = document.getElementById('bookingForm');
-  var formSuccess   = document.getElementById('formSuccess');
-  var formSuccessTx = document.getElementById('formSuccessText');
 
-  bookingForm.addEventListener('submit', function(e){
-    e.preventDefault();
-
-    var data = new FormData(bookingForm);
-    var name    = (data.get('name') || '').toString().trim();
-    var email   = (data.get('email') || '').toString().trim();
-    var phone   = (data.get('phone') || '').toString().trim();
-    var service = (data.get('service') || '').toString().trim();
-    var date    = (data.get('date') || '').toString().trim();
-    var vehicle = (data.get('vehicle') || '').toString().trim();
-
-    if(!name || !email || !phone || !service || !date || !vehicle){
-      bookingForm.reportValidity();
-      return;
-    }
-
-    var serviceLabels = {
-      interior: 'Interior Detail',
-      exterior: 'Exterior Polish',
-      ceramic:  'Ceramic Coating',
-      full:     'Full Package'
-    };
-    var readableService = serviceLabels[service] || service;
-
-    formSuccessTx.textContent =
-      'Thanks, ' + name.split(' ')[0] + '! Your ' + readableService +
-      ' request for ' + vehicle + ' on ' + date + ' has been received — we\'ll confirm by phone or email shortly.';
-
-    formSuccess.classList.add('show');
-    bookingForm.reset();
-
-    formSuccess.scrollIntoView({ behavior:'smooth', block:'nearest' });
-
-    window.clearTimeout(bookingForm._hideTimer);
-    bookingForm._hideTimer = window.setTimeout(function(){
-      formSuccess.classList.remove('show');
-    }, 8000);
-  });
 
   /* ---------------------------------------------------------
      Footer year
